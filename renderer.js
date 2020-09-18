@@ -5,7 +5,7 @@
 const tableify = require("tableify");
 const SerialPort = require("serialport");
 const Readline = SerialPort.parsers.Readline;
-const port = new SerialPort("COM3");
+const port = new SerialPort("COM22");
 const parser = new Readline();
 port.pipe(parser);
 parser.on("data", console.log);

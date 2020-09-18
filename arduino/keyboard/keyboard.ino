@@ -11,7 +11,22 @@ String firstValue = "Hello from first button";
 String secondValue = "Hello from second button";
 String thirdValue = "Hello from third button";
 String forthValue = "Hello from forth button";
+File myFile;
+String myString;
 
+void valueSeparation(String val) {
+  int commaIndex = val.indexOf(',');
+  int secondCommaIndex = val.indexOf(',', commaIndex + 1);
+  int thirdCommaIndex = val.indexOf(',', secondCommaIndex + 1);
+  firstValue = val.substring(0, commaIndex);
+  secondValue = val.substring(commaIndex + 1, secondCommaIndex);
+  thirdValue = val.substring(secondCommaIndex + 1, thirdCommaIndex);
+  forthValue = val.substring(thirdCommaIndex + 1);
+  Serial.println(firstValue);
+  Serial.println(secondValue);
+  Serial.println(thirdValue);
+  Serial.println(forthValue);
+}
 
 void setup() {
   pinMode(inPin1, INPUT);    // declare pushbutton as input
@@ -37,16 +52,35 @@ void setup() {
     while (1);
   }
   Serial.println("card initialized.");
+
+  myFile = SD.open("buttons.txt");
+  if (myFile) {
+    Serial.println("buttons.txt:");
+
+    // read from the file until there's nothing else in it:
+    while (myFile.available()) {
+      char ltr = myFile.read();
+      myString += ltr;
+      Serial.println(myString);
+      valueSeparation(myString);
+    }
+    // close the file:
+    myFile.close();
+  }
 }
 
 void loop() {
   if (Serial.available() > 0)
   {
-    String myString = Serial.readStringUntil('\n');
+    myString = Serial.readStringUntil('\n');
     String dataString = myString;
 
     // open the file. note that only one file can be open at a time,
     // so you have to close this one before opening another.
+    if (SD.exists("buttons.txt")) {
+      SD.remove("buttons.txt");
+      Serial.println("Deleting file from SD");
+    }
     File dataFile = SD.open("buttons.txt", FILE_WRITE);
 
     // if the file is available, write to it:
@@ -58,19 +92,7 @@ void loop() {
     else {
       Serial.println("error opening datalog.txt");
     }
-
-
-    int commaIndex = myString.indexOf(',');
-    int secondCommaIndex = myString.indexOf(',', commaIndex + 1);
-    int thirdCommaIndex = myString.indexOf(',', secondCommaIndex + 1);
-    firstValue = myString.substring(0, commaIndex);
-    secondValue = myString.substring(commaIndex + 1, secondCommaIndex);
-    thirdValue = myString.substring(secondCommaIndex + 1, thirdCommaIndex);
-    forthValue = myString.substring(thirdCommaIndex + 1);
-    Serial.println(firstValue);
-    Serial.println(secondValue);
-    Serial.println(thirdValue);
-    Serial.println(forthValue);
+    valueSeparation(myString);
   }
   if (digitalRead(inPin1) == 0)
   {

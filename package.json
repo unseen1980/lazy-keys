@@ -15,7 +15,6 @@
   "dependencies": {
     "johnny-five": "^2.0.0",
     "serialport": "^7.1.5",
-    "stream": "0.0.2",
-    "tableify": "^1.1.0"
+    "stream": "0.0.2"
   }
 }

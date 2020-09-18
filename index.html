@@ -1,83 +1,77 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8" />
-    <title>Set your buttons</title>
-    <!-- <style>
-      table {
-        border-collapse: collapse;
-      }
-      table,
-      th,
-      td {
-        border: 1px solid black;
-      }
-    </style> -->
-
-    <!-- Compiled and minified CSS -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lazy keys</title>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+      type="text/css"
+      href="https://jenil.github.io/bulmaswatch/darkly/bulmaswatch.min.css"
     />
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   </head>
-
   <body>
-    <div class="container">
-      <!-- <div class="row">
-        <div id="error"></div>
-        <div id="ports"></div>
-      </div> -->
-      <div class="row">
-        <div class="input-field col s12">
-          <label for="button1">Button #1</label>
-          <input type="text" id="button1" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <label for="button2">Button #2</label>
-          <input type="text" id="button2" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <label for="button3">Button #3</label>
-          <input type="text" id="button3" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <label for="button4">Button #4</label>
-          <input type="text" id="button4" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <button class="waves-effect waves-light btn" id="saveBtn">
-            Save
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- We are using Node.js <span id="node-version"></span>, Chromium
-    <span id="chrome-version"></span>, Electron
-    <span id="electron-version"></span>, and Serialport
-    <span id="serialport-version"></span>
-
-    <div id="error"></div>
-    <div id="ports"></div> -->
-    <footer class="page-footer">
+    <section class="section">
       <div class="container">
-        <span>Node:<span id="node-version"></span></span>
-        <span>Chromium:<span id="chrome-version"></span></span>
-        <span>Electron:<span id="electron-version"></span></span>
-        <span>Serialport:<span id="serialport-version"></span></span>
+        <h5 class="title is-5">Lazy keys</h5>
+        <h6 class="subtitle is-6">Set your values.</h6>
+        <div class="field">
+          <label class="label">Button A</label>
+          <div class="control">
+            <input class="input" type="text" id="button1" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Button B</label>
+          <div class="control">
+            <input class="input" type="text" id="button2" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Button C</label>
+          <div class="control">
+            <input class="input" type="text" id="button3" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Button D</label>
+          <div class="control">
+            <input class="input" type="text" id="button4" />
+          </div>
+        </div>
+        <div class="field">
+          <label class="label">Select Port</label>
+          <div class="control">
+            <div class="select">
+              <select id="ports"></select>
+            </div>
+          </div>
+        </div>
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link" id="saveBtn">Save</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="content">
+        <div class="columns">
+          <div class="column is-size-7">
+            <span>Node:<span id="node-version"></span></span>
+          </div>
+          <div class="column is-size-7">
+            <span>Chromium:<span id="chrome-version"></span></span>
+          </div>
+          <div class="column is-size-7">
+            <span>Electron:<span id="electron-version"></span></span>
+          </div>
+          <div class="column is-size-7">
+            <span>Serialport:<span id="serialport-version"></span></span>
+          </div>
+        </div>
       </div>
     </footer>
   </body>
-
   <script src="./renderer.js"></script>
 </html>

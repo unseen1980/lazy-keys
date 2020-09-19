@@ -6,6 +6,15 @@ const Readline = SerialPort.parsers.Readline;
 let port;
 let parser;
 
+const setValuesFromLocalStorage = () => {
+  const initValues = localStorage.getItem("buttonValues").split(",");
+  if (initValues.length === 4) {
+    initValues.forEach((val, idx) => {
+      document.getElementById(`button${idx + 1}`).value = val;
+    });
+  }
+};
+
 const setPort = (selectedPort) => {
   console.log("Selected port --->", selectedPort);
   port = new SerialPort(selectedPort);
@@ -28,6 +37,8 @@ SerialPort.list((err, ports) => {
     );
   }
 
+  setValuesFromLocalStorage();
+
   setPort(portsList.options[portsList.selectedIndex].value);
 
   portsList.addEventListener("change", function () {
@@ -41,5 +52,9 @@ SerialPort.list((err, ports) => {
     const button3 = document.getElementById("button3").value;
     const button4 = document.getElementById("button4").value;
     port.write(`${button1},${button2},${button3},${button4}`);
+    localStorage.setItem(
+      "buttonValues",
+      `${button1},${button2},${button3},${button4}`
+    );
   };
 });

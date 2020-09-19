@@ -57,4 +57,13 @@ SerialPort.list((err, ports) => {
       `${button1},${button2},${button3},${button4}`
     );
   };
+
+  const btn2 = document.getElementById("resetBtn");
+  btn2.onclick = function changeContent() {
+    for (let i = 0; i < 4; i++) {
+      document.getElementById(`button${i + 1}`).value = "";
+    }
+    port.write(`,,,`);
+    localStorage.setItem("buttonValues", `,,,`);
+  };
 });
